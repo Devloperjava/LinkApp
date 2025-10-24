@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LinkApp</string>
+    <string name="welcome_text">مرحبًا بك في LinkApp</string>
+    <string name="hint_username">اسم المستخدم</string>
+    <string name="hint_password">كلمة المرور</string>
+    <string name="action_login">تسجيل الدخول</string>
+    <string name="action_start_chat">بدء محادثة</string>
+</resources>
