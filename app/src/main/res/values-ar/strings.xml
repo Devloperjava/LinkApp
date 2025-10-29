@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">لينك آب</string>
+
+    <!-- Login / Register -->
+    <string name="login_title">تسجيل الدخول</string>
+    <string name="email_hint">البريد الإلكتروني</string>
+    <string name="password_hint">كلمة المرور</string>
+    <string name="login_button">تسجيل الدخول</string>
+    <string name="register_title">إنشاء حساب</string>
+    <string name="register_button">تسجيل</string>
+    <string name="confirm_password_hint">تأكيد كلمة المرور</string>
+
+    <!-- Main / Navigation -->
+    <string name="welcome_text">👋 مرحبًا بك في لينك آب!</string>
+    <string name="btn_messages">المحادثات</string>
+    <string name="btn_profile">الملف الشخصي</string>
+    <string name="btn_logout">تسجيل الخروج</string>
+
+    <!-- Messages / Chat -->
+    <string name="conversations">المحادثات</string>
+    <string name="new_chat">محادثة جديدة</string>
+    <string name="chat_title">المحادثة</string>
+    <string name="send">إرسال</string>
+    <string name="message_hint">اكتب رسالة...</string>
+
+    <!-- Misc -->
+    <string name="slogan">تواصل فورًا.</string>
+</resources>

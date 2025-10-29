@@ -9,7 +9,7 @@
         android:id="@+id/tv_chat_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="المحادثة"
+        android:text="@string/chat_title"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp" />
@@ -30,13 +30,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="اكتب رسالة..." />
+            android:hint="@string/message_hint" />
 
         <Button
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="إرسال" />
+            android:text="@string/send" />
     </LinearLayout>
 
 </LinearLayout>

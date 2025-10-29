@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:text="👋 Welcome to LinkApp!"
+        android:text="@string/welcome_text"
         android:textSize="20sp"
         android:textColor="#000000"
         android:layout_width="wrap_content"
@@ -18,20 +18,20 @@
         android:id="@+id/btn_messages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="المحادثات"
+        android:text="@string/btn_messages"
         android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btn_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="الملف الشخصي"
+        android:text="@string/btn_profile"
         android:layout_marginTop="8dp" />
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="تسجيل الخروج"
+        android:text="@string/btn_logout"
         android:layout_marginTop="12dp" />
 </LinearLayout>

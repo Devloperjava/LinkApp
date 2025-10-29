@@ -1,3 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LinkApp</string>
+
+    <!-- Login / Register -->
+    <string name="login_title">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Log in</string>
+    <string name="register_title">Create account</string>
+    <string name="register_button">Register</string>
+    <string name="confirm_password_hint">Confirm password</string>
+
+    <!-- Main / Navigation -->
+    <string name="welcome_text">👋 Welcome to LinkApp!</string>
+    <string name="btn_messages">Messages</string>
+    <string name="btn_profile">Profile</string>
+    <string name="btn_logout">Log out</string>
+
+    <!-- Messages / Chat -->
+    <string name="conversations">Conversations</string>
+    <string name="new_chat">New chat</string>
+    <string name="chat_title">Conversation</string>
+    <string name="send">Send</string>
+    <string name="message_hint">Type a message...</string>
+
+    <!-- Misc -->
+    <string name="slogan">Connect instantly.</string>
+</resources>
 <resources>
     <string name="app_name">LinkApp</string>
 </resources>

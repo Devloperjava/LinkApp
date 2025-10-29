@@ -3,7 +3,8 @@
 
     <application
         android:label="LinkApp"
-        android:theme="@style/Theme.LinkApp">
+        android:theme="@style/Theme.LinkApp"
+        android:supportsRtl="true">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

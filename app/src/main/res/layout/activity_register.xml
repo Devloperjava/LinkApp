@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="إنشاء حساب"
+            android:text="@string/register_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
@@ -21,7 +21,7 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="البريد الإلكتروني"
+            android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="8dp" />
 
@@ -29,7 +29,7 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="كلمة المرور"
+            android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:layout_marginBottom="8dp" />
 
@@ -37,7 +37,7 @@
             android:id="@+id/et_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="تأكيد كلمة المرور"
+            android:hint="@string/confirm_password_hint"
             android:inputType="textPassword"
             android:layout_marginBottom="16dp" />
 
@@ -45,7 +45,7 @@
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="تسجيل" />
+            android:text="@string/register_button" />
 
     </LinearLayout>
 
