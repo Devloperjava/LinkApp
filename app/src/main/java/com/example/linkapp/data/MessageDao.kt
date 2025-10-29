@@ -7,11 +7,11 @@ import androidx.room.Query
 @Dao
 interface MessageDao {
     @Query("SELECT * FROM messages WHERE chatId = :chatId ORDER BY timestamp ASC")
-    suspend fun getMessagesForChat(chatId: String): List<MessageEntity>
+    fun getMessagesForChat(chatId: String): kotlinx.coroutines.flow.Flow<List<MessageEntity>>
 
     @Insert
     suspend fun insert(message: MessageEntity)
 
     @Query("SELECT DISTINCT chatId FROM messages")
-    suspend fun getChatIds(): List<String>
+    fun getChatIds(): kotlinx.coroutines.flow.Flow<List<String>>
 }

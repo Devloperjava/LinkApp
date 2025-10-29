@@ -1,7 +1,8 @@
 package com.example.linkapp
 
 import android.content.Context
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 object MessageRepository {
     private var initialized = false
@@ -14,28 +15,30 @@ object MessageRepository {
         }
     }
 
-    fun getMessages(chatId: String): List<Message> = runBlocking {
-        if (!initialized) return@runBlocking emptyList<Message>()
-        db.messageDao().getMessagesForChat(chatId).map { Message(it.sender, it.text, it.timestamp) }
-    }
-
-    fun addMessage(chatId: String, message: Message) {
-        if (!initialized) return
-        runBlocking {
-            db.messageDao().insert(
-                com.example.linkapp.data.MessageEntity(
-                    chatId = chatId,
-                    sender = message.sender,
-                    text = message.text,
-                    timestamp = message.timestamp
-                )
-            )
+    /** Returns a Flow of messages for the given chatId (ordered by timestamp). */
+    fun getMessagesFlow(chatId: String): Flow<List<Message>> {
+        if (!initialized) return kotlinx.coroutines.flow.flowOf(emptyList())
+        return db.messageDao().getMessagesForChat(chatId).map { list ->
+            list.map { Message(it.sender, it.text, it.timestamp) }
         }
     }
 
-    fun getConversations(): List<String> = runBlocking {
-        if (!initialized) return@runBlocking emptyList()
-        val ids = db.messageDao().getChatIds()
-        if (ids.isEmpty()) listOf("Alice", "Bob") else ids
+    /** Insert a message (suspend). */
+    suspend fun addMessageSuspend(chatId: String, message: Message) {
+        if (!initialized) return
+        db.messageDao().insert(
+            com.example.linkapp.data.MessageEntity(
+                chatId = chatId,
+                sender = message.sender,
+                text = message.text,
+                timestamp = message.timestamp
+            )
+        )
+    }
+
+    /** Returns a Flow of conversation ids. */
+    fun getConversationsFlow(): Flow<List<String>> {
+        if (!initialized) return kotlinx.coroutines.flow.flowOf(listOf("Alice", "Bob"))
+        return db.messageDao().getChatIds()
     }
 }

@@ -2,40 +2,49 @@ package com.example.linkapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.linkapp.databinding.ActivityMessagesBinding
+import com.example.linkapp.ui.ConversationAdapter
+import kotlinx.coroutines.launch
 
 class MessagesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMessagesBinding
+    private lateinit var adapter: ConversationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMessagesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        refreshList()
+        // Ensure repository initialized (in case Application didn't)
+        MessageRepository.init(applicationContext)
 
-        binding.lvConversations.setOnItemClickListener { _, _, position, _ ->
-            val convo = binding.lvConversations.adapter.getItem(position) as String
+        adapter = ConversationAdapter { chatId ->
             val i = Intent(this, ChatActivity::class.java)
-            i.putExtra("chatId", convo)
+            i.putExtra("chatId", chatId)
             startActivity(i)
+        }
+
+        binding.rvConversations.layoutManager = LinearLayoutManager(this)
+        binding.rvConversations.adapter = adapter
+
+        // Collect conversations flow
+        lifecycleScope.launch {
+            MessageRepository.getConversationsFlow().collect { list ->
+                adapter.submitList(list)
+            }
         }
 
         binding.btnNewChat.setOnClickListener {
-            // create a new chat with timestamp id
             val id = "chat_${System.currentTimeMillis()}"
-            MessageRepository.addMessage(id, Message("me","Hi"))
-            val i = Intent(this, ChatActivity::class.java)
-            i.putExtra("chatId", id)
-            startActivity(i)
+            lifecycleScope.launch {
+                MessageRepository.addMessageSuspend(id, Message("me", "Hi", System.currentTimeMillis()))
+                val i = Intent(this@MessagesActivity, ChatActivity::class.java)
+                i.putExtra("chatId", id)
+                startActivity(i)
+            }
         }
-    }
-
-    private fun refreshList() {
-        val convos = MessageRepository.getConversations()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, convos)
-        binding.lvConversations.adapter = adapter
     }
 }

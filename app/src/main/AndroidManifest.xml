@@ -10,5 +10,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity android:name=".MessagesActivity" android:exported="false" />
+        <activity android:name=".ChatActivity" android:exported="false" />
     </application>
 </manifest>
