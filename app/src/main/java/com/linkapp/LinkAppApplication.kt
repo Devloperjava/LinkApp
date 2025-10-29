@@ -18,6 +18,8 @@ class LinkAppApplication : Application() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         
         // Initialize app components
+        // Apply saved locale before initializing components
+        com.linkapp.util.LocaleHelper.applyLocale(this)
         initializeApp()
     }
 

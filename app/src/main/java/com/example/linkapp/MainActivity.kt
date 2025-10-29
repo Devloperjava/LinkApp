@@ -12,7 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.textView.text = "👋 Welcome to LinkApp!"
+        // Use string resource for welcome text
+        binding.textView.text = getString(R.string.welcome_text)
+
+        // Long-press welcome text to open settings (language switch)
+        binding.textView.setOnLongClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            true
+        }
 
         binding.btnMessages.setOnClickListener {
             startActivity(Intent(this, com.example.linkapp.MessagesActivity::class.java))
