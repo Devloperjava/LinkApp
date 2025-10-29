@@ -1,19 +1,41 @@
 package com.example.linkapp
 
-object MessageRepository {
-    // map of chatId -> messages
-    private val chats: MutableMap<String, MutableList<Message>> = mutableMapOf()
+import android.content.Context
+import kotlinx.coroutines.runBlocking
 
-    fun getMessages(chatId: String): List<Message> {
-        return chats.getOrPut(chatId) { mutableListOf() }
+object MessageRepository {
+    private var initialized = false
+    private lateinit var db: com.example.linkapp.data.AppDatabase
+
+    fun init(context: Context) {
+        if (!initialized) {
+            db = com.example.linkapp.data.AppDatabase.getInstance(context)
+            initialized = true
+        }
+    }
+
+    fun getMessages(chatId: String): List<Message> = runBlocking {
+        if (!initialized) return@runBlocking emptyList<Message>()
+        db.messageDao().getMessagesForChat(chatId).map { Message(it.sender, it.text, it.timestamp) }
     }
 
     fun addMessage(chatId: String, message: Message) {
-        chats.getOrPut(chatId) { mutableListOf() }.add(message)
+        if (!initialized) return
+        runBlocking {
+            db.messageDao().insert(
+                com.example.linkapp.data.MessageEntity(
+                    chatId = chatId,
+                    sender = message.sender,
+                    text = message.text,
+                    timestamp = message.timestamp
+                )
+            )
+        }
     }
 
-    fun getConversations(): List<String> {
-        // return chat ids
-        return chats.keys.toList().ifEmpty { listOf("Alice", "Bob") }
+    fun getConversations(): List<String> = runBlocking {
+        if (!initialized) return@runBlocking emptyList()
+        val ids = db.messageDao().getChatIds()
+        if (ids.isEmpty()) listOf("Alice", "Bob") else ids
     }
 }
