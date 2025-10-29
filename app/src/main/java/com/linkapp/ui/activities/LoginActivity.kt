@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.linkapp.databinding.ActivityLoginBinding
+import com.linkapp.util.SessionManager
 
 /**
  * Simple LoginActivity implementation using ViewBinding.
  * - Validates non-empty email/password
- * - On success navigates to MainActivity
+ * - On success navigates to MainActivity and saves session locally
  */
 class LoginActivity : AppCompatActivity() {
 
@@ -29,8 +30,10 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // TODO: Replace with real authentication
-            // For now, accept any non-empty credentials
+            // Simple local session handling
+            val session = SessionManager(this)
+            session.login(email)
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

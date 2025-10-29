@@ -29,6 +29,8 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             // TODO: perform real registration (backend)
+            val session = com.linkapp.util.SessionManager(this)
+            session.login(email)
             Toast.makeText(this, "تم التسجيل بنجاح (وهمي)", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
