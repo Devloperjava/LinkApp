@@ -42,3 +42,4 @@ org.gradle.java.home=/home/<username>/.sdkman/candidates/java/21.0.8-tem
 - تم ضبط `org.gradle.java.home` في `gradle.properties` إلى JDK 21 المثبت عبر SDKMAN في هذا الجهاز.
 
 إذا أردت أن أدفع التغييرات إلى remote (GitHub)، أعطني رابط المستودع أو صلاحية الرفع.
+Updated: Thu Oct 30 03:47:06 PM EEST 2025
